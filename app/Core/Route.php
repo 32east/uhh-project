@@ -14,7 +14,7 @@ class Route {
             }
 
             $controllerName = substr($file, 0, strlen($file) - strlen("php") - 1);
-            require_once __DIR__ . "/../../app/Controllers/" . $file;
+            require_once $controllersDir . $file;
 
             if (!class_exists($controllerName)) {
                 continue;
