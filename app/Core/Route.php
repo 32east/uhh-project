@@ -3,12 +3,14 @@ namespace Core;
 
 use Contracts\BaseController;
 
+require "Functions.php";
+
 final class Route {
     static private array $routes = [];
 
     static public function init() : void {
-        ImportClasses(__DIR__ . "/../../app/Contracts/");
-        $arr_controllers = ImportClasses(__DIR__ . "/../../app/Controllers/");
+        Utils::ImportClasses(__DIR__ . "/../../app/Contracts/");
+        $arr_controllers = Utils::ImportClasses(__DIR__ . "/../../app/Controllers/");
 
         foreach ($arr_controllers as $controllerName) {
             self::addRoute(new $controllerName);

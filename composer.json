@@ -9,8 +9,13 @@
       "email": "email@example.com"
     }
   ],
+  "autoload": {
+    "classmap": ["app/Core/"]
+  },
   "require": {
     "ext-pdo": "*",
-    "maxmind-db/reader": "~1.0"
+    "maxmind-db/reader": "~1.0",
+    "ext-json": "*",
+    "ext-curl": "*"
   }
 }

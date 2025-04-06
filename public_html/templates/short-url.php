@@ -25,12 +25,11 @@
         resultDiv.style.opacity = 0;
 
         if (urlInput) {
-            fetch('/api/v1/shorty', {
+            fetch('/api/v1/shorty?url=' + urlInput, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ url: urlInput })
             })
                 .then(response => {
                     if (response.ok) {
