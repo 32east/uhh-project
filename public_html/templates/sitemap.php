@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../app/Controllers/BaseController.php";
+require_once __DIR__ . "/../../app/Contracts/BaseController.php";
 require_once __DIR__ . "/../../app/DTO/Sitemap.php";
 
 header("HTTP/1.1 200", null, 200);

@@ -1,5 +1,5 @@
 <?php
-$fileName = __DIR__ . "/../../book.txt";
+$fileName = __DIR__ . "/../../public_html/staticfiles/book.txt";
 $resource = fopen($fileName, "r");
 
 use Contracts\BaseController;
