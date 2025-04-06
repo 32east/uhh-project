@@ -9,7 +9,7 @@ abstract class BaseController {
     public string $uri = "";
     public string $title = "";
 
-    abstract public function index();
+    abstract public function index(array $query);
 
     static public function Page404() : void {
         header("HTTP/1.1 404 Not Found", null, 404);
@@ -20,5 +20,12 @@ abstract class BaseController {
     }
     public function GenerateSitemapDTO() : Sitemap {
         return new Sitemap($this->uri, $this->method);
+    }
+
+    public function Page(array $pageInfo) : void {
+        $title = $pageInfo["title"];
+        $viewPath = $pageInfo["path"];
+
+        require __DIR__ . "/../../public_html/templates/index.php";
     }
 }

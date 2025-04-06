@@ -3,7 +3,7 @@ namespace Core;
 
 use Contracts\BaseController;
 
-class Route {
+final class Route {
     static private array $routes = [];
 
     static public function init() : void {
@@ -23,20 +23,25 @@ class Route {
         return self::$routes;
     }
 
-    public function getRoute(string $name) : ?BaseController {
+    static public function getRoute(string $name) : ?BaseController {
         return self::$routes[$name]??null;
     }
 
-    public function dispatch(string $uri, string $method): void {
-        $handler = $this->getRoute($uri);
+    static public function dispatch(): void {
+        self::init();
+        $stripURi = explode("?", $_SERVER["REQUEST_URI"]);
+        $handler = self::getRoute($stripURi[0]);
         if (!isset($handler)) {
             BaseController::Page404();
             return;
-        } elseif ($handler->method !== $method) {
+        } elseif ($handler->method !== $_SERVER["REQUEST_METHOD"]) {
             BaseController::MethodNotAllowed();
             return;
         }
 
-        $handler->index();
+        $urlParse = parse_url($_SERVER["REQUEST_URI"]);
+        parse_str($urlParse["query"]??null, $queryParse);
+
+        $handler->index($queryParse);
     }
 }

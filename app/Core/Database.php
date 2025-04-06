@@ -10,7 +10,7 @@ class Database {
     static public function getConnection() : ?PDO {
         if (self::$instance == null) {
             $host = "172.25.0.2";
-            $dbname = "songs";
+            $dbname = "url-shortener";
             $user = "postgres";
             $passwd = "1";
             $dsn = "pgsql:host=$host;dbname=$dbname;";
