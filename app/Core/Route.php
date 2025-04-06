@@ -1,26 +1,16 @@
 <?php
 namespace Core;
 
-use Controllers\BaseController;
+use Contracts\BaseController;
 
 class Route {
     static private array $routes = [];
 
     static public function init() : void {
-        $controllersDir = __DIR__ . "/../../app/Controllers/";
-        foreach (scandir($controllersDir) as $file) {
-            if (!str_ends_with($file, "php")) {
-                continue;
-            }
+        ImportClasses(__DIR__ . "/../../app/Contracts/");
+        $arr_controllers = ImportClasses(__DIR__ . "/../../app/Controllers/");
 
-            $controllerName = substr($file, 0, strlen($file) - strlen("php") - 1);
-            require_once $controllersDir . $file;
-
-            if (!class_exists($controllerName)) {
-                continue;
-            }
-
-            $controllerName = "\\" . substr($file, 0, strlen($file) - strlen("php") - 1);
+        foreach ($arr_controllers as $controllerName) {
             self::addRoute(new $controllerName);
         }
     }

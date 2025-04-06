@@ -1,9 +1,12 @@
 <?php
 
-class PastaController extends Controllers\BaseController
+use Contracts\BaseController;
+
+class PastaController extends BaseController
 {
     public string $method = "GET";
     public string $uri = "/pasta";
+    public string $title = "Паста с Двача";
 
     public function index(): void {
         $viewPath = __DIR__ . "/../../public_html/templates/pasta.php";
