@@ -2,8 +2,11 @@
 
 namespace Controllers;
 
-abstract class Controller {
-    abstract public function index() : void;
+abstract class BaseController {
+    public string $method = "GET";
+    public string $uri = "";
+
+    public function index() : void {}
 
     static public function Page404() : void {
         echo "404 not found";
