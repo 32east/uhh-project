@@ -9,8 +9,6 @@ abstract class BaseController {
     public string $uri = "";
     public string $title = "";
 
-    abstract public function index(array $query);
-
     static public function Page404() : void {
         header("HTTP/1.1 404 Not Found", null, 404);
         echo "404 not found";
